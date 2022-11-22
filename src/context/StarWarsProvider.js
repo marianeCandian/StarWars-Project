@@ -5,6 +5,7 @@ import requestFetch from '../services/RequestAPI';
 
 export default function StarWarsProvider({ children }) {
   const [data, setData] = useState([]);
+  const [filters, setFilters] = useState([]);
 
   useEffect(() => {
     requestFetch().then((result) => setData(result));
@@ -12,7 +13,9 @@ export default function StarWarsProvider({ children }) {
 
   const value = useMemo(() => ({
     data,
-  }), [data]);
+    filters,
+    setFilters,
+  }), [data, filters, setFilters]);
 
   return (
     <StarWarsContext.Provider value={ value }>
