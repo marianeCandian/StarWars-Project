@@ -11,7 +11,7 @@ export default function Filters() {
 
   useEffect(() => {
     setFilters(name);
-  }, [name, setFilters]);
+  }, [name]);
 
   return (
     <form>

@@ -7,7 +7,8 @@ export default function Table() {
 
   const filterData = () => {
     const dataFilterName = data
-      .filter((el) => el.name.includes(filters.name));
+      .filter((el) => el.name.toUpperCase().includes(filters?.toUpperCase()));
+    console.log(dataFilterName);
     setSearch(dataFilterName);
   };
 
