@@ -6,7 +6,6 @@ import Form from './components/Form';
 function App() {
   return (
     <>
-      <p>Hello Star Wars!</p>
       <Form />
       <Table />
     </>

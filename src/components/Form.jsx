@@ -30,6 +30,7 @@ export default function Form() {
   return (
     <form>
       <label htmlFor="name">
+        Search:
         <input
           type="text"
           name="name"
