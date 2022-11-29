@@ -27,6 +27,9 @@ export default function Form() {
     setNumberFilters([...numberFilters, newNumberFilter]);
   };
 
+  const filtraOpcoes = (opcao) => !numberFilters.find((filtro) => (
+    opcao === filtro.column));
+
   return (
     <form>
       <label htmlFor="name">
@@ -48,11 +51,15 @@ export default function Form() {
           onChange={ ({ target }) => setColumn(target.value) }
           data-testid="column-filter"
         >
-          <option value="population">population</option>
-          <option value="orbital_period">orbital_period</option>
-          <option value="diameter">diameter</option>
-          <option value="rotation_period">rotation_period</option>
-          <option value="surface_water">surface_water</option>
+          {
+            ['population', 'orbital_period', 'diameter',
+              'rotation_period', 'surface_water']
+              .filter(filtraOpcoes).map((item) => (
+                <option value={ item } key={ item }>
+                  {item}
+                </option>
+              ))
+          }
         </select>
       </label>
       <label htmlFor="operator">
