@@ -105,12 +105,12 @@ describe('Testando a aplicação', () => {
 
     const planet2 = await screen.findByText('Tatooine');
     expect(planet2).toBeInTheDocument();
+
     const planet3 = await screen.findByText('Naboo');
     expect(planet3).toBeInTheDocument();
+
     const planet4 = await screen.findByText('Dagobah');
     expect(planet4).toBeInTheDocument();
-    const planet5 = await screen.findByText('Tatooine');
-    expect(planet5).toBeInTheDocument();
 
     const column = screen.getByTestId('column-filter');
     const quantity = screen.getByTestId('comparison-filter');
@@ -129,7 +129,20 @@ describe('Testando a aplicação', () => {
     userEvent.type(value, '13000');
     userEvent.click(button);
 
-    expect(planet2).toBeInTheDocument();
+    expect(planet).not.toBeInTheDocument();
+
+    userEvent.selectOptions(column, 'orbital_period');
+    userEvent.selectOptions(quantity, 'igual a');
+    userEvent.type(value, '304');
+    userEvent.click(button);
+
+    expect(planet).not.toBeInTheDocument();
+
+    const button2 = screen.getByTestId('button-remove-filters');
+    userEvent.click(button2);
+
+    const newPlanet = await screen.findByText(/hoth/i);
+    expect(newPlanet).toBeInTheDocument();
   });
 
 });
