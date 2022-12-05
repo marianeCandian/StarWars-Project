@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
 export default function Table() {
-  const [search, setSearch] = useState([]);
-  const { data, filterName, newData, setNewData } = useContext(StarWarsContext);
+  // const [search, setSearch] = useState([]);
+  const { data, filterName, newData, setNewData,
+    search, setSearch } = useContext(StarWarsContext);
 
   useEffect(() => {
     setSearch(data);
@@ -24,7 +25,7 @@ export default function Table() {
       }
     }), dataFilterName);
     setSearch(resultArray);
-  }, [data, filterName, newData]);
+  }, [data, filterName, newData, setSearch]);
 
   const handleDeleteFilter = ({ target }) => {
     const newArray = newData.filter((el) => el.column !== target.name);
@@ -76,7 +77,7 @@ export default function Table() {
           {
             search.map((el) => (
               <tr key={ el.name }>
-                <td>{el.name}</td>
+                <td data-testid="planet-name">{el.name}</td>
                 <td>{el.rotation_period}</td>
                 <td>{el.orbital_period}</td>
                 <td>{el.diameter}</td>

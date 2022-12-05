@@ -7,6 +7,7 @@ export default function StarWarsProvider({ children }) {
   const [data, setData] = useState([]);
   const [filterName, setFilterName] = useState([]);
   const [newData, setNewData] = useState([]);
+  const [search, setSearch] = useState([]);
 
   useEffect(() => {
     requestFetch().then((result) => setData(result));
@@ -18,7 +19,9 @@ export default function StarWarsProvider({ children }) {
     setFilterName,
     newData,
     setNewData,
-  }), [data, filterName, setFilterName, setNewData, newData]);
+    search,
+    setSearch,
+  }), [data, filterName, setFilterName, setNewData, newData, search, setSearch]);
 
   return (
     <StarWarsContext.Provider value={ value }>
