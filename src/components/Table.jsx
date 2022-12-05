@@ -3,7 +3,7 @@ import StarWarsContext from '../context/StarWarsContext';
 
 export default function Table() {
   const [search, setSearch] = useState([]);
-  const { data, filterName, newData } = useContext(StarWarsContext);
+  const { data, filterName, newData, setNewData } = useContext(StarWarsContext);
 
   useEffect(() => {
     setSearch(data);
@@ -26,6 +26,11 @@ export default function Table() {
     setSearch(resultArray);
   }, [data, filterName, newData]);
 
+  const handleDeleteFilter = ({ target }) => {
+    const newArray = newData.filter((el) => el.column !== target.name);
+    setNewData([...newArray]);
+  };
+
   return (
     <>
       {newData.map((info, index) => (
@@ -33,8 +38,22 @@ export default function Table() {
           <p>
             {`${info.column} ${info.operator} ${info.value}`}
           </p>
+          <button
+            type="button"
+            name={ info.column }
+            onClick={ handleDeleteFilter }
+          >
+            X
+          </button>
         </div>
       ))}
+      <button
+        type="button"
+        data-testid="button-remove-filters"
+        onClick={ () => setNewData([]) }
+      >
+        Remover todas filtragens
+      </button>
       <table>
         <thead>
           <tr>

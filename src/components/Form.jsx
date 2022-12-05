@@ -25,6 +25,7 @@ export default function Form() {
       value,
     };
     setNumberFilters([...numberFilters, newNumberFilter]);
+    setColumn('population');
   };
 
   const filtraOpcoes = (opcao) => !numberFilters.find((filtro) => (
