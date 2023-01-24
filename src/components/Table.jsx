@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
 export default function Table() {
-  // const [search, setSearch] = useState([]);
   const { data, filterName, newData, setNewData,
     search, setSearch } = useContext(StarWarsContext);
 
